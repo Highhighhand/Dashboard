@@ -1,0 +1,41 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+rm(list = ls()) 
+
+lifeDF=read.csv("lifeDF.csv")
+
+library(ggplot2)
+baseBar = ggplot(lifeDF, aes(x = reorder(region,share), y = share)) + theme_minimal()
+
+barPlot  = baseBar + geom_bar( stat = "identity" )
+
+barsFt = barPlot + facet_grid(~level) 
+barsFt=barsFt + coord_flip()
+
+barsFt=barsFt + theme(axis.text.y = element_text(size=7,angle = 20))+labs(y="Life Expectancy")+labs(x="Region")
+
+library(scales)
+titleText='What is the life expectancy in different regions around the world?'
+sourceText='Source: Canvas data Life expectancy at birth'
+barFt=barsFt + geom_text(aes(label=ifelse(share>0.01,
+                                      percent(share,accuracy = 1),
+                                     "")),
+                     nudge_y = 0.11,size=2.7) + 
+           scale_y_continuous(labels = percent_format(accuracy = 1,suffix=""))+labs(title=titleText,caption=sourceText) 
+
+barFt
+
+```
+
+```{r}
+saveRDS(barFt, file = "barsFt.rds")
+```
+

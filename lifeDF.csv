@@ -1,0 +1,41 @@
+"","region","level","counts","share"
+"1","Africa","<60",8,0.889
+"2","Australia and Oceania","<60",0,0
+"3","Central America and the Caribbean","<60",0,0
+"4","Central Asia","<60",0,0
+"5","East and Southeast Asia","<60",0,0
+"6","Europe","<60",0,0
+"7","Middle East","<60",0,0
+"8","North America","<60",0,0
+"9","South America","<60",0,0
+"10","South Asia","<60",1,0.111
+"11","Africa","60-70",35,0.729
+"12","Australia and Oceania","60-70",3,0.062
+"13","Central America and the Caribbean","60-70",1,0.021
+"14","Central Asia","60-70",1,0.021
+"15","East and Southeast Asia","60-70",4,0.083
+"16","Europe","60-70",0,0
+"17","Middle East","60-70",1,0.021
+"18","North America","60-70",0,0
+"19","South America","60-70",1,0.021
+"20","South Asia","60-70",2,0.042
+"21","Africa","70-80",11,0.092
+"22","Australia and Oceania","70-80",14,0.118
+"23","Central America and the Caribbean","70-80",24,0.202
+"24","Central Asia","70-80",5,0.042
+"25","East and Southeast Asia","70-80",10,0.084
+"26","Europe","70-80",20,0.168
+"27","Middle East","70-80",17,0.143
+"28","North America","70-80",2,0.017
+"29","South America","70-80",11,0.092
+"30","South Asia","70-80",5,0.042
+"31","Africa",">80",1,0.02
+"32","Australia and Oceania",">80",3,0.059
+"33","Central America and the Caribbean",">80",7,0.137
+"34","Central Asia",">80",0,0
+"35","East and Southeast Asia",">80",6,0.118
+"36","Europe",">80",29,0.569
+"37","Middle East",">80",1,0.02
+"38","North America",">80",4,0.078
+"39","South America",">80",0,0
+"40","South Asia",">80",0,0
