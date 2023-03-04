@@ -1,0 +1,76 @@
+---
+title: "PlotForDash-13"
+author: "Qianqi Wei"
+date: '2023-03-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list = ls())
+```
+
+
+```{r Deliverable 1}
+library(rio)
+library(ggplot2)
+library(DescTools)
+
+cia=read.csv("cia.csv")
+WIDTH=1
+
+base= ggplot(cia)  
+h1= base + geom_histogram(aes(x = value),
+                          binwidth = WIDTH,
+                          fill='grey') 
+h1=h1 + labs(y="Count") + labs(x="Life Expectancy")
+mn=Mean(cia$value,na.rm = T)
+sk=Skew(cia$value,
+     na.rm = T)
+
+annMean=paste0('Mean:',round(mn))
+annSk=paste0('Skewness:',round(sk,2))
+
+h2 = h1+ geom_vline(xintercept = mn,color='red') + 
+    annotate(geom = 'text',color='red',
+             label=annMean,
+              y = 15,
+              x=mn-3,
+              angle=90) + 
+    annotate(geom = 'text', color='blue',
+             label=annSk,
+              y = 5,
+              x= 88,
+              angle=0) +
+    labs(title="What is the life expectancy in the world",
+          caption = "Resource: Worldometer data")
+h2
+saveRDS(h2, file = "h2.rds")
+```
+
+## Including Plots
+
+
+```{r Deliverable 3}
+
+library(sf)
+library(rio)
+mapWorld=read.csv("mapWorld.csv")
+map_values=read.csv("map_values.csv", header =F)
+
+library(ggplot2)
+baseMap= ggplot(data=mapWorld) + theme_classic() + 
+         geom_sf(fill='grey', 
+                 color=NA) 
+
+numericMap= baseMap + geom_sf(data=map_values,
+                       aes(fill=value),
+                       color=NA)
+
+Legend_title="Life Expectancy\n(grey is missing)"
+titleText='What is the life expectancy in different countries around the world?'
+
+numericmap1 = numericMap + scale_fill_brewer(palette ='YlOrBr', name=Legend_title) + labs(title=titleText)
+saveRDS(numericmap1, file = "numericmap1.rds")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
