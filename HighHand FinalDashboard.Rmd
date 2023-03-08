@@ -1,5 +1,5 @@
 ---
-title: "HighHand Dashboard"
+title: "HighHand FinalDashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -8,28 +8,29 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-setwd("C:/Users/67351/OneDrive/文档/UW/2022-9/winter/543/Final Report/Dashboard")
+getwd()
+
 ```
 
-Column {data-width=650}
+Column {data-width=450}
 -----------------------------------------------------------------------
 
-### Chart A
+### Life expectancy histogram plot
 
 ```{r}
 readRDS("h2.rds")
 ```
 
-Column {data-width=350}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Chart B
+### Distribution of age groups by Region
 
 ```{r}
-readRDS("barsFt.rds")
+readRDS("barsFt2.rds")
 ```
 
-### Chart C
+### Geographic distribution of life expectancy
 
 ```{r}
 readRDS("numericmap1.rds")

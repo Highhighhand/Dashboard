@@ -7,7 +7,7 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
-```{r}
+```{r, warning=FALSE}
 rm(list = ls()) 
 
 lifeDF=read.csv("lifeDF.csv")
@@ -25,17 +25,17 @@ barsFt=barsFt + theme(axis.text.y = element_text(size=7,angle = 20))+labs(y="Lif
 library(scales)
 titleText='What is the life expectancy in different regions around the world?'
 sourceText='Source: Canvas data Life expectancy at birth'
-barFt=barsFt + geom_text(aes(label=ifelse(share>0.01,
-                                      percent(share,accuracy = 1),
+barFt2=barsFt + geom_text(aes(label=ifelse(share>0.01,
+                                      scales::percent(share,accuracy = 1),
                                      "")),
                      nudge_y = 0.11,size=2.7) + 
-           scale_y_continuous(labels = percent_format(accuracy = 1,suffix=""))+labs(title=titleText,caption=sourceText) 
+           scale_y_continuous(labels = scales::percent_format(accuracy = 1,suffix=""))+labs(title=titleText,caption=sourceText) 
 
-barFt
+barFt2
 
 ```
 
 ```{r}
-saveRDS(barFt, file = "barsFt.rds")
+saveRDS(barFt2, file = "barsFt2.rds")
 ```
 

@@ -51,26 +51,40 @@ saveRDS(h2, file = "h2.rds")
 
 
 ```{r Deliverable 3}
+link="https://github.com/Highhighhand/Deliverable-3/raw/main/LifeExpect_birth.xlsx"
+library(rio)
+
+cia=import(link)
+
+segmented_data = data.frame(cia$name,
+                            cut(cia$value, c(0,60,70,80,90), labels=c("<60","60~70","70~80",">80"),
+                                include.lowest = TRUE, right = FALSE))
+names(segmented_data) = c('NAME', 'value')
+segmented_data
+
+linkMap="https://github.com/Highhighhand/Deliverable-3/raw/main/worldMap.geojson" 
 
 library(sf)
-library(rio)
-mapWorld=read.csv("mapWorld.csv")
-map_values=read.csv("map_values.csv", header =F)
-
+mapWorld=read_sf(linkMap)
+str(mapWorld)
+map_values=merge(mapWorld,
+                 segmented_data, 
+                 by='NAME')
 library(ggplot2)
 baseMap= ggplot(data=mapWorld) + theme_classic() + 
-         geom_sf(fill='grey', 
-                 color=NA) 
-
+  geom_sf(fill='grey', 
+          color=NA) 
+baseMap 
 numericMap= baseMap + geom_sf(data=map_values,
-                       aes(fill=value),
-                       color=NA)
-
+                              aes(fill=value),
+                              color=NA)
+numericMap
 Legend_title="Life Expectancy\n(grey is missing)"
 titleText='What is the life expectancy in different countries around the world?'
-
-numericmap1 = numericMap + scale_fill_brewer(palette ='YlOrBr', name=Legend_title) + labs(title=titleText)
-saveRDS(numericmap1, file = "numericmap1.rds")
+sourceText='Source: Canvas data Life expectancy at birth'
+numericmap1=numericMap + scale_fill_brewer(palette ='YlOrBr', name=Legend_title)+labs(title=titleText,caption=sourceText)
+numericmap1
+saveRDS(numericmap1,"numericmap1.rds")
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
