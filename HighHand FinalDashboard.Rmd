@@ -18,7 +18,7 @@ Column {data-width=450}
 ### Life expectancy histogram plot
 
 ```{r}
-readRDS("h2.rds")
+readRDS("numericmap1.rds")
 ```
 
 Column {data-width=550}
@@ -27,12 +27,12 @@ Column {data-width=550}
 ### Distribution of age groups by Region
 
 ```{r}
-readRDS("barsFt2.rds")
+readRDS("h2.rds")
 ```
 
 ### Geographic distribution of life expectancy
 
 ```{r}
-readRDS("numericmap1.rds")
+readRDS("barsFt2.rds")
 ```
 
